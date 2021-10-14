@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using static System.Console;
 
 
-void Start(int port = 9000)
+void StartEcho(int port = 9000)
 {
     var endPoint = new IPEndPoint(IPAddress.Loopback, port);
     var socket = new Socket(endPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
@@ -42,6 +42,6 @@ async Task DoEcho(Socket socket)
 }
 
 
-Start();
+StartEcho();
 WriteLine("Echo Server running...");
 ReadLine();
