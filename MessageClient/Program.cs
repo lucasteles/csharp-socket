@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text.Json;
@@ -15,7 +14,7 @@ using static System.Console;
 
 T Decode<T>(byte[] body) => JsonSerializer.Deserialize<T>(body);
 
-async Task<byte[]> ReadBytesOfNet(Stream stream, int numberOfBytes)
+async Task<byte[]> ReadBytesOfNet(NetworkStream stream, int numberOfBytes)
 {
     var buffer = new byte[numberOfBytes];
     var readedBytes = 0;
