@@ -30,8 +30,10 @@ async Task<byte[]> ReadBytesOfNet(NetworkStream stream, int numberOfBytes)
 async Task SendAsync<T>(NetworkStream stream, T message)
 {
     var (header, body) = Encode(message);
-    await stream.WriteAsync(header);
-    await stream.WriteAsync(body);
+    var package = new byte[header.Length + body.Length];
+    Buffer.BlockCopy(header, 0,package, 0, header.Length);
+    Buffer.BlockCopy(body, 0,package, header.Length, body.Length);
+    await stream.WriteAsync(package);
 }
 
 async Task<T> Receive<T>(NetworkStream stream)
