@@ -26,7 +26,8 @@ async Task DoEcho(Socket socket)
         ).ConfigureAwait(false);
         WriteLine("ECHO SERVER :: CLIENT CONNECTED");
 
-        await using var stream = new NetworkStream(clientSocket, true);
+        await using NetworkStream stream = new(clientSocket, true);
+
         var buffer = new byte[1024];
 
         while (true)
